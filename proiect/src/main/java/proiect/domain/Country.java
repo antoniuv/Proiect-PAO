@@ -6,6 +6,7 @@ public class Country {
     protected String name;
     protected int surface;
     President president;
+    protected int research_level = 0;
     NuclearWarhead[] nuclearWarheads;
 
     public Country(String name,  int surface) {
@@ -52,6 +53,14 @@ public class Country {
         this.surface = surface;
     }
 
+    public int getResearchLevel() {
+        return research_level;
+    }
+
+    public void setResearchLevel(int researchLevel) {
+        this.research_level = researchLevel;
+    }
+
     @Override
     public String toString() {
         return "Country{" +
@@ -62,9 +71,19 @@ public class Country {
                 '}';
     }
 
+    public void doResearch() {
+        research_level++;
+    }
+
     public void addNuke(NuclearWarhead nuclearWarhead) {
-        this.nuclearWarheads = Arrays.copyOf(nuclearWarheads, nuclearWarheads.length + 1);
-        this.nuclearWarheads[nuclearWarheads.length - 1] = nuclearWarhead;
+        if (nuclearWarheads == null) {
+            nuclearWarheads = new NuclearWarhead[1];
+            nuclearWarheads[0] = nuclearWarhead;
+        }
+        else {
+            this.nuclearWarheads = Arrays.copyOf(nuclearWarheads, nuclearWarheads.length + 1);
+            this.nuclearWarheads[nuclearWarheads.length - 1] = nuclearWarhead;
+        }
     }
 
 }

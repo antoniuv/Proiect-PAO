@@ -2,9 +2,9 @@ package proiect.domain;
 
 public class Bomb {
     private String type;
-    private int yield;
+    private double yield;
 
-    public Bomb(String type, int yield) {
+    public Bomb(String type, double yield) {
         this.type = type;
         this.yield = yield;
     }
@@ -17,11 +17,11 @@ public class Bomb {
         this.type = type;
     }
 
-    public int getYield() {
+    public double getYield() {
         return yield;
     }
 
-    public void setYield(int yield) {
+    public void setYield(double yield) {
         this.yield = yield;
     }
 

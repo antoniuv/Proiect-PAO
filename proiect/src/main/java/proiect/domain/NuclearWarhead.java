@@ -1,19 +1,24 @@
 package proiect.domain;
 
 public class NuclearWarhead extends Rocket{
-    Bomb payload;
+    private Bomb payload;
+    private final String location;
 
-    public NuclearWarhead(int range, double speed, Bomb payload) {
+    public NuclearWarhead(int range, double speed, String location) {
         super(range, speed);
-        this.payload = payload;
+        this.location = location;
     }
 
     public Bomb getPayload() {
         return payload;
     }
 
-    public void setPayload(Bomb payload) {
+    public void attachPayload(Bomb payload) {
         this.payload = payload;
+    }
+
+    public String getLocation() {
+        return location;
     }
 
     @Override
