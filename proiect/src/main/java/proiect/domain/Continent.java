@@ -6,6 +6,7 @@ public class Continent {
     protected String name;
     protected Country[] countries;
 
+
     public Continent(String name) {
         this.name = name;
     }
@@ -39,8 +40,7 @@ public class Continent {
 
     @Override
     public String toString() {
-        return name + "{" +
-                "countries=" + Arrays.toString(countries) +
-                '}';
+        return name + '\n'
+                + Arrays.toString(countries);
     }
 }

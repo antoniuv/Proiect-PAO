@@ -1,6 +1,7 @@
 package proiect.domain;
 
 public class Person {
+    protected int id;
     protected String firstName;
     protected String lastName;
     protected int age;
@@ -9,6 +10,13 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getAge() {

@@ -27,6 +27,7 @@ public class NuclearWarhead extends Rocket{
                 "payload=" + payload +
                 ", range=" + range +
                 ", speed=" + speed +
+                ", location='" + location + '\'' +
                 '}';
     }
 }

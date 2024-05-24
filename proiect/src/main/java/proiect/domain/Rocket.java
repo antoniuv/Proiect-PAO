@@ -1,12 +1,21 @@
 package proiect.domain;
 
 public class Rocket {
+    private int id;
     protected int range;
     protected double speed;
 
     public Rocket(int range, double speed) {
         this.range = range;
         this.speed = speed;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getRange() {

@@ -3,6 +3,7 @@ package proiect.domain;
 import java.util.Arrays;
 
 public class Country {
+    protected int id;
     protected String name;
     protected int surface;
     President president;
@@ -19,6 +20,14 @@ public class Country {
         this.nuclearWarheads = nuclearWarheads;
         this.president = president;
         this.surface = surface;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -68,7 +77,7 @@ public class Country {
                 ", surface=" + surface +
                 ", president=" + president +
                 ", nuclearWarheads=" + Arrays.toString(nuclearWarheads) +
-                '}';
+                '}' + '\n';
     }
 
     public void doResearch() {
