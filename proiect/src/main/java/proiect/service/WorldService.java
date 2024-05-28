@@ -3,6 +3,11 @@ package proiect.service;
 import proiect.domain.*;
 import proiect.repository.*;
 import proiect.config.SetupDataUsingStatement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.util.Scanner;
 
@@ -39,6 +44,14 @@ public class WorldService {
             System.out.println("Added continent: " + name);
             lastContinentIndex++;
         }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.csv", true))) {
+            String line = "Adaugare Continent: " + name + "," + getCurrentTimestamp();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addCountry() {
@@ -66,6 +79,14 @@ public class WorldService {
 
         Country country = new Country(name, surface);
         continents[c].addCountry(country);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.csv" , true))) {
+            String line = "Adaugare Tara: " + name + "," + getCurrentTimestamp();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void explore() {
@@ -128,6 +149,14 @@ public class WorldService {
         NuclearWarhead nuke = new NuclearWarhead(range, speed, location);
         nuke.setId(recentNukeId);
         countries[co].addNuke(nuke);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.csv", true))) {
+            String line = "Adaugare Racheta la " + location + "," + getCurrentTimestamp();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void attachPayload() {
@@ -173,6 +202,14 @@ public class WorldService {
 
         Bomb payload = new Bomb(type,yield);
         nukes[n].attachPayload(payload);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.csv", true))) {
+            String line = "Adaugare Bomba la " + nukes[n].getLocation() + "," + getCurrentTimestamp();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void increaseResearch(){
@@ -201,6 +238,14 @@ public class WorldService {
 
         countries[co].doResearch();
         System.out.println("Increased research level");
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.csv", true))) {
+            String line = "S-au realizat cercetari in: " + countries[co].getName() + "," + getCurrentTimestamp();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void electPresident() {
@@ -223,6 +268,7 @@ public class WorldService {
         }
         int co = scanner.nextInt();
         co--;
+
         System.out.println("Specify Name:");
         String firstName = scanner.next();
         String lastName = scanner.next();
@@ -242,5 +288,18 @@ public class WorldService {
         President president = new President(firstName, lastName, age, party);
         countries[co].setPresident(president);
 
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("events.csv", true))) {
+            String line = "S-a ales presedintele in " + countries[co].getName() + ": " + firstName + " " + lastName + "," + getCurrentTimestamp();
+            writer.write(line);
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String getCurrentTimestamp() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.now().format(formatter);
     }
 }
